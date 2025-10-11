@@ -1,0 +1,33 @@
+<div class="detail-container">
+    <!-- 添加帖子元信息 -->
+    <div class="post-meta">
+        <div class="user-info">
+            <img [src]="post.user?.avatar?.startsWith('/') ? 'http://localhost:5000' + post.user?.avatar : post.user?.avatar" 
+                 (error)="onImageError($event)" 
+                 class="user-avatar" 
+                 alt="用户头像">
+            <span class="username">{{ post.user?.username }}</span>
+        </div>
+        <div class="post-info">
+            <span class="section-name">{{ post.section?.name }}</span>
+            <span class="post-time">{{ post.created_at | date:'yyyy-MM-dd HH:mm' }}</span>
+        </div>
+    </div>
+    
+    <h2>{{ post.title }}</h2>
+    <p>{{ post.content }}</p>
+    
+    <!-- 帖子图片展示区域 -->
+    <div class="post-images" *ngIf="post.images && post.images.length > 0">
+      <div class="image-gallery">
+        <div class="image-item" *ngFor="let image of post.images">
+          <img [src]="'http://localhost:5000/' + image" alt="帖子图片" (error)="onImageError($event)">
+        </div>
+      </div>
+    </div>
+    
+    <!-- 点赞收藏按钮 -->
+    <app-post-actions *ngIf="post.id" [postId]="post.id"></app-post-actions>
+    <!-- 评论区 -->
+    <app-comment *ngIf="post.id" [postId]="post.id"></app-comment>
+</div>

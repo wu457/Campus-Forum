@@ -1,0 +1,37 @@
+<div class="post-page-wrapper">
+  <app-sidebar></app-sidebar>
+  <div class="post-list-container">
+    <div class="header">
+      <h2 *ngIf="currentSection">{{ currentSection.name }}</h2>
+      <p *ngIf="currentSection">{{ currentSection.description }}</p>
+      <button (click)="createPost()" class="create-post-btn">发帖</button>
+    </div>
+    
+    <div class="posts-list" *ngIf="posts.length > 0">
+      <div *ngFor="let post of posts" class="post-item">
+        <div class="post-header">
+          <h3 (click)="viewPost(post)" class="post-title">{{ post.title }}</h3>
+          <div class="post-meta">
+            <span class="author" *ngIf="post.user">作者: {{ post.user.username }}</span>
+            <span class="section" *ngIf="post.section">板块: {{ post.section.name }}</span>
+            <span class="date">{{ post.created_at | date:'yyyy-MM-dd HH:mm' }}</span>
+          </div>
+        </div>
+        
+        <div class="post-content">
+          <p>{{ post.content | slice:0:100 }}{{ post.content.length > 100 ? '...' : '' }}</p>
+        </div>
+        
+        <div class="post-actions">
+          <button (click)="viewPost(post)" class="view-btn">查看</button>
+          <button *ngIf="canEditPost(post)" (click)="updatePost(post)" class="edit-btn">编辑</button>
+          <button *ngIf="canDeletePost(post)" (click)="deletePost(post)" class="delete-btn">删除</button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="no-posts" *ngIf="posts.length === 0">
+      <p>暂无帖子</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,116 @@
+.profile-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 32px 24px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+.avatar-section {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.avatar-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 16px;
+  border: 1px solid #eee;
+}
+.form-group {
+  margin-bottom: 18px;
+}
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+}
+input[type="text"], input[type="email"] {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+}
+button[type="submit"] {
+  width: 100%;
+  padding: 10px 0;
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+button[disabled] {
+  background: #aaa;
+  cursor: not-allowed;
+}
+.success-msg {
+  color: #43a047;
+  margin-top: 12px;
+}
+.error-msg {
+  color: #e53935;
+  margin-top: 12px;
+}
+
+/* 新增样式 */
+.profile-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.action-link {
+  color: #1976d2;
+  text-decoration: none;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.action-link:hover {
+  background-color: rgba(25, 118, 210, 0.1);
+}
+
+.posts-section {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.post-item {
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.post-title {
+  display: block;
+  color: #333;
+  font-weight: 500;
+  text-decoration: none;
+  margin-bottom: 5px;
+}
+
+.post-title:hover {
+  color: #1976d2;
+}
+
+.post-meta {
+  font-size: 12px;
+  color: #888;
+}
+
+.empty-message {
+  color: #888;
+  font-style: italic;
+  padding: 15px 0;
+}

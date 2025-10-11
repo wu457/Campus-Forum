@@ -1,0 +1,11 @@
+<nav>
+    <a (click)="router.navigate(['/home'])" style="cursor: pointer;">📚 校园论坛</a>
+    <span class="navbar-spacer"></span> 
+    <button *ngIf="!isLoggedIn()" (click)="router.navigate(['/'])" type="button">🔑 登录</button>
+    <button *ngIf="!isLoggedIn()" (click)="router.navigate(['/register'])" type="button">📝 注册</button>
+    <button *ngIf="isLoggedIn()" (click)="router.navigate(['/home'])" type="button">🏠 首页</button>
+    <span *ngIf="isLoggedIn()">👋 欢迎回来! </span>
+    <button *ngIf="isLoggedIn()" (click)="router.navigate(['/user/profile'])" type="button">👤 个人中心</button>
+    <button *ngIf="isAdmin()" (click)="router.navigate(['/admin/dashboard'])" type="button">⚙️ 管理后台</button>
+    <button *ngIf="isLoggedIn()" (click)="logout()">🚪 退出登录</button>
+</nav>

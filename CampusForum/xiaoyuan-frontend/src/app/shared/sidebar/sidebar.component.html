@@ -1,0 +1,10 @@
+<div class="section-sidebar">
+  <h2 (click)="goHome()">首页</h2>
+  <ul>
+    <li *ngFor="let section of sections" 
+        [class.active]="section.id === selectedSectionId"
+        (click)="selectSection(section)">
+      {{ section.name }}
+    </li>
+  </ul>
+</div>

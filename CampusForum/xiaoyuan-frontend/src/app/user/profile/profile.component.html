@@ -1,0 +1,57 @@
+<div class="profile-container">
+  <h2>欢迎来到我的主页~</h2>
+  <form (ngSubmit)="onSubmit()" [formGroup]="profileForm">
+    <div class="avatar-section">
+      <img [src]="avatarPreview || defaultAvatar" 
+           (error)="onImageError($event)" 
+           class="avatar-img" 
+           alt="头像" />
+      <input type="file" (change)="onFileChange($event)" accept="image/*" />
+    </div>
+    <div class="form-group">
+      <label>用户名</label>
+      <input formControlName="username" type="text" />
+    </div>
+    <div class="form-group">
+      <label>邮箱</label>
+      <input formControlName="email" type="email"  />
+    </div>
+    <button type="submit" [disabled]="profileForm.invalid">保存修改</button>
+  </form>
+  <div *ngIf="successMsg" class="success-msg">{{successMsg}}</div>
+  <div *ngIf="errorMsg" class="error-msg">{{errorMsg}}</div>
+  
+  <div class="profile-actions">
+    <a routerLink="/user/change-password" class="action-link">修改密码</a>
+    <a (click)="showMyPosts()" class="action-link">我发布的帖子</a>
+    <a (click)="showLikedPosts()" class="action-link">我赞过的帖子</a>
+    <a (click)="showFavoritePosts()" class="action-link">我收藏的帖子</a>
+  </div>
+  
+  <div *ngIf="activeTab === 'my'" class="posts-section">
+    <h3>我发布的帖子</h3>
+    <div *ngIf="myPosts.length === 0" class="empty-message">暂无发布的帖子</div>
+    <div *ngFor="let post of myPosts" class="post-item">
+      <a [routerLink]="['/post', post.id]" class="post-title">{{post.title}}</a>
+      <div class="post-meta">{{post.created_at | date:'yyyy-MM-dd HH:mm'}} | 点赞数: {{post.likes_count || 0}} | 评论数: {{post.comments_count || 0}}</div>
+    </div>
+  </div>
+  
+  <div *ngIf="activeTab === 'liked'" class="posts-section">
+    <h3>我赞过的帖子</h3>
+    <div *ngIf="likedPosts.length === 0" class="empty-message">暂无点赞的帖子</div>
+    <div *ngFor="let post of likedPosts" class="post-item">
+      <a [routerLink]="['/post', post.id]" class="post-title">{{post.title}}</a>
+      <div class="post-meta">{{post.created_at | date:'yyyy-MM-dd HH:mm'}}</div>
+    </div>
+  </div>
+  
+  <div *ngIf="activeTab === 'favorite'" class="posts-section">
+    <h3>我收藏的帖子</h3>
+    <div *ngIf="favoritePosts.length === 0" class="empty-message">暂无收藏的帖子</div>
+    <div *ngFor="let post of favoritePosts" class="post-item">
+      <a [routerLink]="['/post', post.id]" class="post-title">{{post.title}}</a>
+      <div class="post-meta">{{post.created_at | date:'yyyy-MM-dd HH:mm'}}</div>
+    </div>
+  </div>
+</div>

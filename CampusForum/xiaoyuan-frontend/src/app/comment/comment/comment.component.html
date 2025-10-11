@@ -1,0 +1,34 @@
+<div class="comment-section">
+    <h3>评论 ({{comments.length}})</h3>
+    
+    <!-- 发表评论 -->
+    <div class="current-user-comment">
+      <img [src]="userAvatar || defaultAvatar" (error)="onImageError($event)" class="user-avatar">
+      <form [formGroup]="commentForm" (ngSubmit)="submitComment()" class="comment-form">
+      <textarea 
+        formControlName="content" 
+        placeholder="写下你的评论..." 
+        rows="3">
+      </textarea>
+      <button type="submit" [disabled]="commentForm.invalid">发表评论</button>
+    </form>
+    </div>
+    
+    <!-- 评论列表 -->
+    <div class="comment-list">
+      <div *ngFor="let comment of comments" class="comment-item">
+        <div class="comment-header">
+          <img [src]="comment.user.avatar || defaultAvatar" (error)="onImageError($event)" class="user-avatar">
+          <span class="username">{{comment.user.username}}</span>
+          <span class="comment-time">{{comment.created_at | date:'yyyy-MM-dd HH:mm'}}</span>
+          <button 
+            *ngIf="canDeleteComment(comment)" 
+            (click)="deleteComment(comment.id)"
+            class="delete-btn">
+            删除
+          </button>
+        </div>
+        <div class="comment-content">{{comment.content}}</div>
+      </div>
+    </div>
+  </div>

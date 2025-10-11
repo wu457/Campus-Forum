@@ -1,0 +1,8 @@
+<h2>编辑帖子</h2>
+<form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+  <label>标题：</label>
+  <input formControlName="title" type="text" />
+  <label>内容：</label>
+  <textarea formControlName="content"></textarea>
+  <button type="submit">保存</button>
+</form>

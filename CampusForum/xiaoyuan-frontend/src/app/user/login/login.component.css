@@ -1,0 +1,71 @@
+:host {
+    display: flex;
+    min-height: 100vh;
+    background-image: url('/avatar/sky.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    align-items: center; /* 垂直居中 */
+    justify-content: center; /* 水平居中 */
+    margin: 0;
+    padding: 0;
+  }
+form {
+  max-width: 350px;
+  margin: 60px auto;
+  padding: 32px 24px 24px 24px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-self: center;
+  gap: 18px;
+}
+label {
+  font-weight: 500;
+  margin-bottom: 4px;
+  display: block;
+}
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #d0d0d0;
+  border-radius: 5px;
+  font-size: 15px;
+  margin-bottom: 6px;
+  box-sizing: border-box;
+  transition: border 0.2s;
+}
+input:focus {
+  border-color: #409eff;
+  outline: none;
+}
+button[type="submit"],
+button[type="button"] {
+  width: 100%;
+  padding: 10px 0;
+  background: #409eff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: background 0.2s;
+}
+button[type="button"] {
+  background: #67c23a;
+  margin-top: 0;
+}
+button:hover {
+  opacity: 0.92;
+}
+.error {
+  color: #e74c3c;
+  font-size: 13px;
+  margin-bottom: 4px;
+}

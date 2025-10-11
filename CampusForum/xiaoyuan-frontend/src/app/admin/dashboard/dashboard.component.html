@@ -1,0 +1,11 @@
+<div class="admin-dashboard">
+  <h1>管理员控制台</h1>
+  <p class="dashboard-intro">欢迎使用校园论坛管理系统，请选择以下功能进行操作</p>
+  
+  <div class="feature-grid">
+    <div class="feature-card" *ngFor="let feature of adminFeatures" [routerLink]="feature.route">
+      <h2>{{ feature.name }}</h2>
+      <p>{{ feature.description }}</p>
+    </div>
+  </div>
+</div>

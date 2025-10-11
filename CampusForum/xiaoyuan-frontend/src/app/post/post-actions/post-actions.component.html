@@ -1,0 +1,18 @@
+<div class="post-actions">
+    <button 
+      (click)="togglePostlike()" 
+      [class.postliked]="userPostliked"
+      class="action-btn postlike-btn">
+      <span class="icon">{{userPostliked ? '❤️' : '🤍'}}</span>
+      <span>{{postlikeCount}}</span>
+    </button>
+    
+    <button 
+      (click)="toggleFavorite()"
+      [class.favorited]="userFavorited"
+      class="action-btn favorite-btn">
+      <span class="icon">{{userFavorited ? '⭐' : '☆'}}</span>
+      <span>{{userFavorited ? '已收藏' : '收藏'}}</span>
+      <span>{{favoriteCount}}</span>
+    </button>
+  </div>

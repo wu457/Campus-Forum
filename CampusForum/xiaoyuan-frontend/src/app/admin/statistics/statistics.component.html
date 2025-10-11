@@ -1,0 +1,108 @@
+<div class="statistics-container">
+  <h1>数据统计</h1>
+  
+  <div *ngIf="error" class="error-message">
+    {{ error }}
+  </div>
+  
+  <div *ngIf="loading" class="loading">
+    加载中...
+  </div>
+  
+  <div *ngIf="!loading && !error && statistics" class="statistics-content">
+    <!-- 刷新按钮 -->
+    <div class="actions-bar">
+      <button (click)="refreshData()" class="refresh-btn">
+        <span class="icon">🔄</span> 刷新数据
+      </button>
+    </div>
+    
+    <!-- 统计卡片 -->
+    <div class="stats-cards">
+      <div class="stats-card user-stats">
+        <div class="card-icon">👥</div>
+        <div class="card-content">
+          <h3>用户统计</h3>
+          <div class="stats-item">
+            <span class="stats-label">总用户数:</span>
+            <span class="stats-value">{{ statistics.user_statistics.total_users }}</span>
+          </div>
+          <div class="stats-item">
+            <span class="stats-label">今日新增:</span>
+            <span class="stats-value">{{ statistics.user_statistics.new_users_today }}</span>
+          </div>
+          <div class="stats-item">
+            <span class="stats-label">在线用户:</span>
+            <span class="stats-value">{{ statistics.user_statistics.online_users }}</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="stats-card post-stats">
+        <div class="card-icon">📝</div>
+        <div class="card-content">
+          <h3>内容统计</h3>
+          <div class="stats-item">
+            <span class="stats-label">总帖子数:</span>
+            <span class="stats-value">{{ statistics.post_statistics.total_posts }}</span>
+          </div>
+          <div class="stats-item">
+            <span class="stats-label">今日新增帖子:</span>
+            <span class="stats-value">{{ statistics.post_statistics.new_posts_today }}</span>
+          </div>
+          <div class="stats-item">
+            <span class="stats-label">总评论数:</span>
+            <span class="stats-value">{{ statistics.comment_statistics.total_comments }}</span>
+          </div>
+          <div class="stats-item">
+            <span class="stats-label">今日新增评论:</span>
+            <span class="stats-value">{{ statistics.comment_statistics.new_comments_today }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 板块详细数据表格 -->
+    <div class="section-stats-table">
+      <h3>板块详细数据</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>板块名称</th>
+            <th>帖子数量</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let section of statistics.section_statistics">
+            <td>{{ section.name }}</td>
+            <td>{{ section.post_count }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 图表区域 -->
+    <div class="charts-container">
+      <div class="chart-wrapper">
+        <div class="chart-title">用户统计</div>
+        <div class="chart-canvas-container">
+          <canvas #userStatsCanvas></canvas>
+        </div>
+      </div>
+      
+      <div class="chart-wrapper">
+        <div class="chart-title">帖子与评论统计</div>
+        <div class="chart-canvas-container">
+          <canvas #postStatsCanvas></canvas>
+        </div>
+      </div>
+      
+      <div class="chart-wrapper">
+        <div class="chart-title">各板块帖子分布</div>
+        <div class="chart-canvas-container">
+          <canvas #sectionStatsCanvas></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

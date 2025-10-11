@@ -1,0 +1,75 @@
+<div class="permission-management-container">
+  <h1>权限管理</h1>
+  
+  <div *ngIf="error" class="error-message">
+    {{ error }}
+  </div>
+  
+  <div *ngIf="loading" class="loading">
+    加载中...
+  </div>
+  
+  <div class="permission-content" *ngIf="!loading">
+    <!-- 角色列表 -->
+    <div class="roles-panel">
+      <h2>角色列表</h2>
+      <div class="role-list">
+        <div *ngFor="let role of roles" 
+             class="role-item" 
+             [class.active]="selectedRole?.id === role.id"
+             (click)="selectRole(role)">
+          <h3>{{ role.name }}</h3>
+          <p>{{ role.description }}</p>
+          <div class="role-permissions" *ngIf="role.permissions.length > 0">
+            <span class="permission-count">{{ role.permissions.length }} 个权限</span>
+          </div>
+        </div>
+        
+        <div *ngIf="roles.length === 0" class="no-data">
+          暂无角色数据
+        </div>
+      </div>
+    </div>
+    
+    <!-- 权限编辑面板 -->
+    <div class="permissions-panel" *ngIf="selectedRole">
+      <div class="panel-header">
+        <h2>编辑 "{{ selectedRole.name }}" 的权限</h2>
+        <div class="panel-actions">
+          <button (click)="saveRolePermissions()" class="save-btn">保存</button>
+          <button (click)="cancelEdit()" class="cancel-btn">取消</button>
+        </div>
+      </div>
+      
+      <div class="permissions-list">
+        <div *ngFor="let permission of permissions" class="permission-item" [class.has-permission]="hasPermission(permission.id)">
+          <label class="permission-checkbox">
+            <div class="custom-checkbox">
+              <input type="checkbox" 
+                     [checked]="hasPermission(permission.id)"
+                     (change)="togglePermission(permission.id)">
+              <span class="checkmark" [class.checked]="hasPermission(permission.id)">✓</span>
+            </div>
+            <span class="checkbox-label">{{ permission.name }}</span>
+          </label>
+          <p class="permission-description">{{ permission.description }}</p>
+          <div class="permission-meta">
+            <span class="resource">资源: {{ permission.resource }}</span>
+            <span class="action">操作: {{ permission.action }}</span>
+          </div>
+        </div>
+        
+        <div *ngIf="permissions.length === 0" class="no-data">
+          暂无权限数据
+        </div>
+      </div>
+    </div>
+    
+    <!-- 未选择角色时的提示 -->
+    <div class="permissions-panel empty-panel" *ngIf="!selectedRole">
+      <div class="empty-state">
+        <p>请从左侧选择一个角色来管理其权限</p>
+      </div>
+    </div>
+  </div>
+</div>

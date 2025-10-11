@@ -1,0 +1,289 @@
+.permission-management-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.error-message {
+  background-color: #ffebee;
+  color: #c62828;
+  padding: 10px 15px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.loading {
+  text-align: center;
+  padding: 20px;
+  color: #666;
+}
+
+.permission-content {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 20px;
+}
+
+/* 角色面板样式 */
+.roles-panel {
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  height: fit-content;
+}
+
+.roles-panel h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 1.3rem;
+}
+
+.role-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.role-item {
+  background-color: white;
+  border-radius: 6px;
+  padding: 15px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-left: 3px solid transparent;
+}
+
+.role-item:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.role-item.active {
+  border-left-color: #1976d2;
+  background-color: #e3f2fd;
+}
+
+.role-item h3 {
+  margin: 0 0 5px 0;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.role-item p {
+  margin: 0 0 10px 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.role-permissions {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.permission-count {
+  font-size: 0.8rem;
+  color: #1976d2;
+  background-color: #e3f2fd;
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+/* 权限面板样式 */
+.permissions-panel {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.panel-header h2 {
+  margin: 0;
+  color: #333;
+  font-size: 1.3rem;
+}
+
+.panel-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.save-btn {
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cancel-btn {
+  background-color: #757575;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.save-btn:hover {
+  background-color: #1565c0;
+}
+
+.cancel-btn:hover {
+  background-color: #616161;
+}
+
+.permissions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-height: 600px;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.permission-item {
+  background-color: #f9f9f9;
+  border-radius: 6px;
+  padding: 15px;
+  border-left: 3px solid #ddd;
+  transition: all 0.2s ease;
+}
+
+.permission-item.has-permission {
+  border-left-color: #1976d2;
+  background-color: #f5f9fd;
+}
+
+.permission-checkbox {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.custom-checkbox {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.custom-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #fff;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: transparent;
+  font-size: 14px;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+
+.custom-checkbox input:checked ~ .checkmark {
+  background-color: #1976d2;
+  border-color: #1976d2;
+  color: white;
+}
+
+.checkmark.checked {
+  background-color: #1976d2;
+  border-color: #1976d2;
+  color: white;
+}
+
+.checkbox-label {
+  font-weight: 500;
+  color: #333;
+}
+
+.permission-description {
+  margin: 5px 0 10px 0;
+  color: #666;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.permission-meta {
+  display: flex;
+  gap: 15px;
+  font-size: 0.85rem;
+  color: #757575;
+}
+
+.resource, .action {
+  background-color: #f1f1f1;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.empty-panel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+  background-color: #f5f5f5;
+}
+
+.empty-state {
+  text-align: center;
+  color: #757575;
+}
+
+.no-data {
+  text-align: center;
+  padding: 20px;
+  color: #757575;
+  background-color: #f5f5f5;
+  border-radius: 6px;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .permission-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .panel-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .panel-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+  
+  .permission-meta {
+    flex-direction: column;
+    gap: 5px;
+  }
+}

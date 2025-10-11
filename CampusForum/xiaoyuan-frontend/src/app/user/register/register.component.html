@@ -1,0 +1,28 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data" novalidate>
+  <div>
+    <label>用户名：</label>
+    <input formControlName="username" type="text" />
+    <div *ngIf="submitted && registerForm.get('username')?.invalid" class="error">用户名至少3位</div>
+  </div>
+  <div>
+    <label>邮箱：</label>
+    <input formControlName="email" type="email" />
+    <div *ngIf="submitted && registerForm.get('email')?.invalid" class="error">请输入有效邮箱</div>
+  </div>
+  <div>
+    <label>密码：</label>
+    <input formControlName="password" type="password" />
+    <div *ngIf="submitted && registerForm.get('password')?.invalid" class="error">密码至少6位</div>
+  </div>
+  <div>
+    <label>确认密码：</label>
+    <input formControlName="confirmPassword" type="password" />
+    <div *ngIf="submitted && registerForm.errors?.['mismatch']" class="error">两次密码不一致</div>
+  </div>
+  <!-- <div>
+    <label>头像：</label>
+    <input type="file" (change)="onFileChange($event)" />
+  </div> -->
+  <div *ngIf="errorMsg" class="error">{{ errorMsg }}</div>
+  <button type="submit">注册</button>
+</form>

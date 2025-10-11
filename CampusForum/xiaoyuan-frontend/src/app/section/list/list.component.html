@@ -1,0 +1,77 @@
+<div class="home-container">
+  <app-sidebar></app-sidebar>
+  
+  <div class="main-content">
+    <div class="welcome-banner">
+      <h1>欢迎来到校园论坛</h1>
+      <p>分享知识，交流经验，结交朋友</p>
+    </div>
+    
+    <div class="search-container">
+      <input 
+        type="text" 
+        [(ngModel)]="searchKeyword" 
+        placeholder="搜索帖子..." 
+        class="search-input"
+      />
+      <button (click)="searchPosts()" class="search-button">搜索</button>
+    </div>
+    
+    <!-- 搜索结果 -->
+    <div *ngIf="searchResults.length > 0" class="search-results">
+      <h2>搜索结果</h2>
+      <div class="post-grid">
+        <div *ngFor="let post of searchResults" class="post-card" (click)="viewPost(post)">
+          <!-- 帖子图片缩略图 -->
+          <div class="post-thumbnail" *ngIf="post.images && post.images.length > 0">
+            <img [src]="'http://localhost:5000/' + post.images[0]" alt="帖子缩略图" (error)="onImageError($event)">
+          </div>
+          <div class="post-content">
+            <h3>{{ post.title }}</h3>
+            <p>{{ post.content | slice:0:100 }}{{ post.content.length > 100 ? '...' : '' }}</p>
+            <div class="post-meta">
+              <span>作者: {{ post.user?.username }}</span>
+              <span>{{ post.created_at | date:'yyyy-MM-dd' }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 热门板块 -->
+    <div *ngIf="sections.length > 0" class="section-grid">
+      <h2>📚 热门板块</h2>
+      <div class="section-cards">
+        <div *ngFor="let section of sections; let i = index" class="section-card" (click)="selectSection(section)">
+          <div class="section-rank">{{ i + 1 }}</div>
+          <div class="section-content">
+            <h3>{{ section.name }}</h3>
+            <p>{{ section.description || '暂无描述' }}</p>
+            <div class="section-stats">
+              <span class="post-count">📝 {{ section.post_count }} 个帖子</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 热门帖子榜单 -->
+    <div *ngIf="hotPosts.length > 0" class="hot-posts-section">
+      <h2>🔥 帖子热榜</h2>
+      <div class="hot-posts-list">
+        <div *ngFor="let post of hotPosts; let i = index" class="hot-post-item" (click)="viewPost(post)">
+          <div class="rank-number">{{ i + 1 }}</div>
+          <div class="post-info">
+            <h3 class="post-title">{{ post.title }}</h3>
+            <div class="post-meta">
+              <span class="author">{{ post.user?.username }}</span>
+              <span class="section">{{ post.section?.name }}</span>
+              <span class="likes">❤️ {{ post.like_count }}</span>
+              <span class="date">{{ post.created_at | date:'MM-dd' }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

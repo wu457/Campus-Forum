@@ -1,0 +1,37 @@
+.post-actions {
+    display: flex;
+    gap: 15px;
+    margin: 15px 0;
+  }
+  
+  .action-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .action-btn:hover {
+    background: #f8f9fa;
+  }
+  
+  .like-btn.liked {
+    background: #ffe6e6;
+    border-color: #ff4757;
+    color: #ff4757;
+  }
+  
+  .favorite-btn.favorited {
+    background: #fff3cd;
+    border-color: #ffc107;
+    color: #856404;
+  }
+  
+  .icon {
+    font-size: 16px;
+  }

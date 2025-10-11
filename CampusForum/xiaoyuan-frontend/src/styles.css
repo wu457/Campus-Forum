@@ -1,0 +1,98 @@
+/* 全局样式文件 */
+
+/* 重置样式 */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f5f7fa;
+}
+
+/* 通用样式 */
+a {
+  color: #1976d2;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: #2196f3;
+  text-decoration: underline;
+}
+
+/* 按钮样式 */
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+button.primary {
+  background-color: #1976d2;
+  color: white;
+}
+
+button.primary:hover {
+  background-color: #1565c0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+button.secondary {
+  background-color: #f5f5f5;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+button.secondary:hover {
+  background-color: #e0e0e0;
+}
+
+/* 表单样式 */
+input, textarea, select {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: border 0.3s, box-shadow 0.3s;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: #1976d2;
+  box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.2);
+}
+
+/* 卡片样式 */
+.card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+  margin-bottom: 20px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 15px;
+  }
+}

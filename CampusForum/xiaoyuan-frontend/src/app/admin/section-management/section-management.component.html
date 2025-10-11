@@ -1,0 +1,77 @@
+<div class="section-management-container">
+  <h1>板块管理</h1>
+  
+  <div *ngIf="error" class="error-message">
+    {{ error }}
+  </div>
+  
+  <div class="actions-bar">
+    <button (click)="toggleAddForm()" class="add-btn">
+      {{ showAddForm ? '取消添加' : '添加新板块' }}
+    </button>
+  </div>
+  
+  <!-- 添加板块表单 -->
+  <div *ngIf="showAddForm" class="section-form">
+    <h2>添加新板块</h2>
+    <div class="form-group">
+      <label for="name">板块名称:</label>
+      <input type="text" id="name" [(ngModel)]="newSection.name" placeholder="输入板块名称" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="description">板块描述:</label>
+      <textarea id="description" [(ngModel)]="newSection.description" placeholder="输入板块描述" rows="3"></textarea>
+    </div>
+    
+    <div class="form-actions">
+      <button (click)="addSection()" class="save-btn">保存</button>
+    </div>
+  </div>
+  
+  <div *ngIf="loading" class="loading">
+    加载中...
+  </div>
+  
+  <div *ngIf="!loading" class="section-list">
+    <div *ngFor="let section of sections" class="section-card" [class.editing]="editingSection?.id === section.id">
+      <!-- 查看模式 -->
+      <div *ngIf="editingSection?.id !== section.id" class="section-view">
+        <div class="section-header">
+          <h2>{{ section.name }}</h2>
+          <div class="section-actions">
+            <button (click)="editSection(section)" class="edit-btn">编辑</button>
+            <button (click)="deleteSection(section.id)" class="delete-btn">删除</button>
+          </div>
+        </div>
+        <p class="section-description">{{ section.description }}</p>
+        <div class="section-meta" *ngIf="section.posts_count !== undefined">
+          <span>帖子数量: {{ section.posts_count }}</span>
+        </div>
+      </div>
+      
+      <!-- 编辑模式 -->
+      <div *ngIf="editingSection?.id === section.id" class="section-edit">
+        <h2>编辑板块</h2>
+        <div class="form-group">
+          <label for="edit-name">板块名称:</label>
+          <input type="text" id="edit-name" [(ngModel)]="editingSection!.name" placeholder="输入板块名称" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="edit-description">板块描述:</label>
+          <textarea id="edit-description" [(ngModel)]="editingSection!.description" placeholder="输入板块描述" rows="3"></textarea>
+        </div>
+        
+        <div class="form-actions">
+          <button (click)="updateSection()" class="save-btn">保存</button>
+          <button (click)="cancelEdit()" class="cancel-btn">取消</button>
+        </div>
+      </div>
+    </div>
+    
+    <div *ngIf="sections.length === 0 && !loading" class="no-data">
+      暂无板块数据
+    </div>
+  </div>
+</div>

@@ -1,0 +1,66 @@
+<div class="post-management-container">
+  <h1>帖子管理</h1>
+  
+  <div *ngIf="error" class="error-message">
+    {{ error }}
+  </div>
+  
+  <div class="search-container">
+    <div class="search-form">
+      <div class="form-group">
+        <input type="text" [(ngModel)]="searchTerm" placeholder="搜索帖子标题或内容..." class="search-input">
+      </div>
+      
+      <div class="form-group">
+        <select [(ngModel)]="selectedSection" class="section-select">
+          <option [ngValue]="null">所有板块</option>
+          <option *ngFor="let section of sections" [ngValue]="section.id">{{ section.name }}</option>
+        </select>
+      </div>
+      
+      <div class="form-actions">
+        <button (click)="search()" class="search-btn">搜索</button>
+        <button (click)="resetSearch()" class="reset-btn">重置</button>
+      </div>
+    </div>
+  </div>
+  
+  <div *ngIf="loading" class="loading">
+    加载中...
+  </div>
+  
+  <div *ngIf="!loading" class="post-table-container">
+    <table class="post-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>标题</th>
+          <th>作者</th>
+          <th>板块</th>
+          <th>发布时间</th>
+          <th>点赞数</th>
+          <th>评论数</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let post of posts">
+          <td>{{ post.id }}</td>
+          <td class="post-title">{{ post.title }}</td>
+          <td>{{ post.user.username }}</td>
+          <td>{{ post.section.name }}</td>
+          <td>{{ formatDate(post.created_at) }}</td>
+          <td>{{ post.like_count }}</td>
+          <td>{{ post.comment_count }}</td>
+          <td class="actions">
+            <a [routerLink]="['/post', post.id]" class="view-btn">查看</a>
+            <button (click)="deletePost(post.id)" class="delete-btn">删除</button>
+          </td>
+        </tr>
+        <tr *ngIf="posts.length === 0">
+          <td colspan="8" class="no-data">暂无帖子数据</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
